@@ -1,0 +1,129 @@
+---
+// Base layout — driexperts.be
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{Astro.props.title} | DRI Expert</title>
+  <meta name="description" content={Astro.props.description || "DRI Expert — dépannage, réparation, installation. Plomberie, chauffage, débouchage, électricité, HVAC à Bruxelles."} />
+  <link rel="icon" type="image/png" href="/logo.png" />
+  <style>
+    :root {
+      --blue: #1a56db;
+      --dark: #1e293b;
+      --light: #f8fafc;
+      --gray: #64748b;
+      --border: #e2e8f0;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, sans-serif; color: var(--dark); line-height: 1.6; }
+    
+    header { 
+      background: var(--dark); color: white; padding: 0.75rem 1rem;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+    }
+    header a { color: white; text-decoration: none; }
+    .logo { display: flex; align-items: center; gap: 0.75rem; }
+    .logo img { height: 40px; }
+    .logo span { font-size: 0.9rem; opacity: 0.85; }
+    .phones { font-size: 0.85rem; }
+    .phones a { font-weight: 700; font-size: 1.05rem; }
+    
+    nav { background: var(--blue); padding: 0.5rem 1rem; }
+    nav a { color: white; text-decoration: none; padding: 0.4rem 0.6rem; font-size: 0.9rem; border-radius: 4px; }
+    nav a:hover, nav a.active { background: rgba(255,255,255,0.15); }
+    nav { display: flex; flex-wrap: wrap; gap: 0.2rem; }
+    
+    main { max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
+    h1 { font-size: 2rem; margin-bottom: 1rem; color: var(--dark); }
+    h2 { font-size: 1.5rem; margin: 1.5rem 0 0.75rem; color: var(--blue); }
+    p { margin-bottom: 1rem; }
+    
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+    .service-card { 
+      border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem;
+      transition: box-shadow 0.2s;
+    }
+    .service-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+    .service-card h3 { color: var(--blue); margin-bottom: 0.5rem; }
+    .service-card a { text-decoration: none; color: inherit; }
+    .service-card ul { list-style: none; padding: 0; }
+    .service-card li { padding: 0.3rem 0; }
+    .service-card li a { color: var(--blue); font-size: 0.95rem; }
+    
+    .cta { 
+      background: var(--blue); color: white; padding: 0.75rem 1.5rem; 
+      border-radius: 6px; text-decoration: none; display: inline-block; font-weight: 600;
+      margin: 0.5rem 0;
+    }
+    .cta:hover { opacity: 0.9; }
+    
+    footer { 
+      border-top: 1px solid var(--border); padding: 2rem 1rem; 
+      text-align: center; color: var(--gray); font-size: 0.85rem;
+      max-width: 960px; margin: 3rem auto 0;
+    }
+    footer a { color: var(--blue); }
+    
+    .breadcrumb { font-size: 0.85rem; color: var(--gray); margin-bottom: 1.5rem; }
+    .breadcrumb a { color: var(--blue); text-decoration: none; }
+    
+    form { max-width: 500px; }
+    form label { display: block; font-weight: 600; margin: 1rem 0 0.25rem; }
+    form input, form textarea, form select { 
+      width: 100%; padding: 0.6rem; border: 1px solid var(--border); border-radius: 4px; font-size: 1rem;
+      font-family: inherit;
+    }
+    form button { 
+      background: var(--blue); color: white; border: none; padding: 0.75rem 2rem;
+      border-radius: 6px; font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: 1rem;
+    }
+    form button:hover { opacity: 0.9; }
+    
+    @media (max-width: 640px) {
+      header { flex-direction: column; text-align: center; }
+      nav { justify-content: center; }
+      h1 { font-size: 1.5rem; }
+      .services-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <a href="/"><img src="/logo.png" alt="DRI Expert" /></a>
+      <span>dépannage · réparation · installation</span>
+    </div>
+    <div class="phones">
+      <a href="tel:+32470312323">0470 31 23 23</a><br>
+      <a href="tel:+3228885135">02 888 51 35</a>
+    </div>
+  </header>
+  
+  <nav>
+    <a href="/" class={Astro.props.current === 'home' ? 'active' : ''}>Accueil</a>
+    <a href="/plomberie" class={Astro.props.current === 'plomberie' ? 'active' : ''}>Plomberie</a>
+    <a href="/chauffage" class={Astro.props.current === 'chauffage' ? 'active' : ''}>Chauffage</a>
+    <a href="/debouchage" class={Astro.props.current === 'debouchage' ? 'active' : ''}>Débouchage</a>
+    <a href="/electricite" class={Astro.props.current === 'electricite' ? 'active' : ''}>Électricité</a>
+    <a href="/hvac" class={Astro.props.current === 'hvac' ? 'active' : ''}>HVAC</a>
+    <a href="/nettoyage" class={Astro.props.current === 'nettoyage' ? 'active' : ''}>Nettoyage</a>
+    <a href="/contact" class={Astro.props.current === 'contact' ? 'active' : ''}>Contact</a>
+  </nav>
+  
+  <main>
+    <slot />
+  </main>
+  
+  <footer>
+    <p>
+      <strong>DRI Expert</strong> — Dépannage, réparation, installation à Bruxelles<br>
+      <a href="tel:+32470312323">0470 31 23 23</a> · <a href="tel:+3228885135">02 888 51 35</a><br>
+      <a href="/mentions-legales">Mentions légales</a> · <a href="/contact">Contact</a>
+    </p>
+  </footer>
+</body>
+</html>

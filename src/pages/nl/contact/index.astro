@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+---
+<BaseLayout lang="nl" current="home" title="Contacteer ons">
+<h1>Contacteer ons</h1>
+<p>📞 <a href="tel:+324****2323">0470 31 23 23</a> — <a href="tel:+322****5135">02 888 51 35</a></p>
+<form name="contact-nl" method="POST" data-netlify="true"><input type="hidden" name="form-name" value="contact-nl" />
+<label>Naam</label><input type="text" name="name" required />
+<label>Telefoon</label><input type="tel" name="phone" required />
+<label>Email</label><input type="email" name="email" />
+<label>Dienst</label><select name="service"><option>Loodgieterswerk</option><option>Verwarming</option><option>Elektriciteit</option><option>HVAC</option><option>Schoonmaak</option><option>Andere</option></select>
+<label>Bericht</label><textarea name="message" rows="5"></textarea>
+<button type="submit">Versturen</button></form>
+</BaseLayout>

@@ -1,15 +1,48 @@
 ---
-// Base layout — driexperts.be
+const { lang = 'fr' } = Astro.props;
+const altLang = lang === 'fr' ? 'en' : lang === 'en' ? 'nl' : 'fr';
+const url = Astro.url.pathname.replace(/^\/(fr|en|nl)\/?/, '/').replace(/\/$/, '') || '/';
+const descriptions = {
+  fr: "DRI Expert — dépannage, réparation, installation. Plomberie, chauffage, débouchage, électricité, HVAC à Bruxelles.",
+  en: "DRI Expert — troubleshooting, repair, installation. Plumbing, heating, unblocking, electricity, HVAC in Brussels.",
+  nl: "DRI Expert — depannage, reparatie, installatie. Loodgieterij, verwarming, ontstopping, elektriciteit, HVAC in Brussel."
+};
+const phones = { fr: "Appelez-nous", en: "Call us", nl: "Bel ons" };
+const navLabels = {
+  home: { fr: "Accueil", en: "Home", nl: "Home" },
+  plomberie: { fr: "Plomberie", en: "Plumbing", nl: "Loodgieterswerk" },
+  chauffage: { fr: "Chauffage", en: "Heating", nl: "Verwarming" },
+  debouchage: { fr: "Débouchage", en: "Unblocking", nl: "Ontkurken" },
+  electricite: { fr: "Électricité", en: "Electricity", nl: "Elektriciteit" },
+  hvac: { fr: "HVAC", en: "HVAC", nl: "HVAC" },
+  nettoyage: { fr: "Nettoyage", en: "Cleaning", nl: "Schoonmaak" },
+  contact: { fr: "Contact", en: "Contact", nl: "Contact" },
+};
+const navLinks = [
+  { key: 'home', fr: '/', en: '/en/', nl: '/nl/' },
+  { key: 'plomberie', fr: '/plomberie', en: '/en/plumbing', nl: '/nl/loodgieterswerk' },
+  { key: 'chauffage', fr: '/chauffage', en: '/en/heating', nl: '/nl/verwarming' },
+  { key: 'debouchage', fr: '/debouchage', en: '/en/uncorking', nl: '/nl/ontkurken' },
+  { key: 'electricite', fr: '/electricite', en: '/en/electricity', nl: '/nl/elektriciteit' },
+  { key: 'hvac', fr: '/hvac', en: '/en/hvac', nl: '/nl/hvac' },
+  { key: 'nettoyage', fr: '/nettoyage', en: '/en/services/cleaning', nl: '/nl/schoonmaak' },
+  { key: 'contact', fr: '/contact', en: '/en/contact', nl: '/nl/contact' },
+];
+const langSwitch = { fr: '/en' + url, en: '/nl' + url, nl: '/' + url };
+const langLabel = { fr: 'EN', en: 'NL', nl: 'FR' };
 ---
-
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="{lang}">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{Astro.props.title} | DRI Expert</title>
-  <meta name="description" content={Astro.props.description || "DRI Expert — dépannage, réparation, installation. Plomberie, chauffage, débouchage, électricité, HVAC à Bruxelles."} />
+  <meta name="description" content={Astro.props.description || descriptions[lang]} />
   <link rel="icon" type="image/png" href="/logo.png" />
+  <link rel="alternate" hreflang="fr" href={"https://driexperts.be" + url} />
+  <link rel="alternate" hreflang="en" href={"https://driexperts.be/en" + url} />
+  <link rel="alternate" hreflang="nl" href={"https://driexperts.be/nl" + url} />
+  <link rel="canonical" href={"https://driexperts.be" + (lang === 'fr' ? '' : '/' + lang) + url} />
   <style>
     :root {
       --blue: #1a56db;
@@ -71,6 +104,12 @@
     .breadcrumb { font-size: 0.85rem; color: var(--gray); margin-bottom: 1.5rem; }
     .breadcrumb a { color: var(--blue); text-decoration: none; }
     
+    .lang-switch { 
+      color: white; text-decoration: none; font-weight: 700; font-size: 0.85rem;
+      background: rgba(255,255,255,0.15); padding: 0.3rem 0.6rem; border-radius: 4px;
+    }
+    .lang-switch:hover { background: rgba(255,255,255,0.3); }
+    
     form { max-width: 500px; }
     form label { display: block; font-weight: 600; margin: 1rem 0 0.25rem; }
     form input, form textarea, form select { 
@@ -94,24 +133,22 @@
 <body>
   <header>
     <div class="logo">
-      <a href="/"><img src="/logo.png" alt="DRI Expert" /></a>
-      <span>dépannage · réparation · installation</span>
+      <a href={lang === 'fr' ? '/' : '/' + lang + '/'}><img src="/logo.png" alt="DRI Expert" /></a>
+      <span>{lang === 'fr' ? 'dépannage · réparation · installation' : lang === 'en' ? 'troubleshooting · repair · installation' : 'depannage · reparatie · installatie'}</span>
     </div>
     <div class="phones">
-      <a href="tel:+32470312323">0470 31 23 23</a><br>
-      <a href="tel:+3228885135">02 888 51 35</a>
+      <a href="tel:+324****2323">0470 31 23 23</a> · <a href="tel:+322****5135">02 888 51 35</a>
+      <br><span style="font-size:0.8rem;opacity:0.7">{phones[lang]}</span>
     </div>
+    <a href={langSwitch[lang]} class="lang-switch" title={langLabel[lang]}>{langLabel[lang]}</a>
   </header>
   
   <nav>
-    <a href="/" class={Astro.props.current === 'home' ? 'active' : ''}>Accueil</a>
-    <a href="/plomberie" class={Astro.props.current === 'plomberie' ? 'active' : ''}>Plomberie</a>
-    <a href="/chauffage" class={Astro.props.current === 'chauffage' ? 'active' : ''}>Chauffage</a>
-    <a href="/debouchage" class={Astro.props.current === 'debouchage' ? 'active' : ''}>Débouchage</a>
-    <a href="/electricite" class={Astro.props.current === 'electricite' ? 'active' : ''}>Électricité</a>
-    <a href="/hvac" class={Astro.props.current === 'hvac' ? 'active' : ''}>HVAC</a>
-    <a href="/nettoyage" class={Astro.props.current === 'nettoyage' ? 'active' : ''}>Nettoyage</a>
-    <a href="/contact" class={Astro.props.current === 'contact' ? 'active' : ''}>Contact</a>
+    {navLinks.map(link => (
+      <a href={link[lang]} class={Astro.props.current === link.key ? 'active' : ''}>
+        {navLabels[link.key][lang]}
+      </a>
+    ))}
   </nav>
   
   <main>

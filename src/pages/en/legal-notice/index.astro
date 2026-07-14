@@ -1,8 +1,39 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 ---
-<BaseLayout lang="en" current="home" title="Legal Notice">
-<h1>Legal Notice</h1>
-<h2>Editor</h2><p><strong>DRI Expert</strong><br>Rue de la Station 55, 1390 Grez-Doiceau<br>📞 <a href="tel:+324****2323">0470 31 23 23</a></p>
-<h2>Hosting</h2><p>Netlify Inc., San Francisco, CA</p>
+<BaseLayout lang="en" current="home" title="Legal Notice" description="Your name or the name of your company If you are incorporated: The legal form of your company (SA, SPRL, etc.) The term &quot;register of legal persons&quot; (or RPM), fo">
+  <section class="section">
+    <div class="container">
+      <div class="page-content">
+        <div class="breadcrumb"><a href="/en/">Home</a> <span>/</span> <a href="/en/legal-notice/">Legal notice</a></div>
+        <h1>Legal Notice</h1>
+        <ul>
+	<li>Your name or the name of your company</li>
+	<li>If you are incorporated:
+	<ul>
+		<li>The legal form of your company (SA, SPRL, etc.)</li>
+		<li>The term "register of legal persons" (or RPM), followed by an indication of the seat of the court within the territorial jurisdiction of which your company has its registered office,</li>
+		<li>And, if applicable, the fact that your company is in liquidation;</li>
+	</ul>
+	</li>
+	<li>If you are practicing a regulated profession (eg professions):
+	<ul>
+		<li>Professional association or professional organization with which you are registered,</li>
+		<li>Your professional title and the State in which it was granted,</li>
+		<li>A reference to the applicable professional rules and means of access.</li>
+	</ul>
+	</li>
+	<li>The geographical address where you are established (head office of your company);</li>
+	<li>Your contact information, including the email address, allowing you to contact you quickly;</li>
+	<li>Your business number</li>
+	<li>If applicable, your VAT number (idem company number since 2003);</li>
+	<li>In the event that your activity is subject to an authorization scheme, the details of the competent supervisory authority.</li>
+</ul>
+
+        <div style="margin-top:2rem">
+          <a href="/en/contact" class="btn btn-accent">Request a free quote →</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

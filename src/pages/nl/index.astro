@@ -1,96 +1,18 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-const services = [
-  { icon: '🔧', key: 'loodgieterswerk', label: 'Loodgieter', desc: 'Depannage, installatie en reparatie. Kranen, boilers, leidingen, sanitair.', subs: ['Depannage loodgieter', 'Installatie sanitair', 'Reparatie lekkage'], links: ['/nl/loodgieterswerk/problemen-oplossen','/nl/loodgieterswerk/installatie','/nl/loodgieterswerk/reparatie'] },
-  { icon: '🔥', key: 'verwarming', label: 'Verwarming & Ketel', desc: 'Ketel reparatie, jaarlijks onderhoud, installatie en vervanging. Alle merken.', subs: ['Ketel depannage', 'Jaarlijks onderhoud', 'Verwarming installatie'], links: ['/nl/verwarming/problemen-oplossen','/nl/verwarming/installatie','/nl/verwarming/reparatie'] },
-  { icon: '💧', key: 'ontkurken', label: 'Ontstopping', desc: 'Gootsteen, toilet, douche, bad ontstopping. Camera-inspectie. Snelle interventie.', subs: ['Afvoer ontstopping', 'Toilet ontstopping', 'Camera inspectie'], links: ['/nl/ontkurken/problemen-oplossen','/nl/ontkurken/problemen-oplossen','/nl/ontkurken/problemen-oplossen'] },
-  { icon: '⚡', key: 'elektriciteit', label: 'Elektriciteit', desc: 'Elektrische depannage, installatie zekeringkast, keuring. Verlichting, stopcontacten.', subs: ['Elektrische reparatie', 'Zekeringkast installatie', 'Keuring'], links: ['/nl/elektriciteit/problemen-oplossen','/nl/elektriciteit/installatie','/nl/elektriciteit/reparatie'] },
-  { icon: '❄️', key: 'hvac', label: 'HVAC & Ventilatie', desc: 'Airconditioning, ventilatie, afzuiging. Installatie en onderhoud.', subs: ['AC depannage', 'HVAC installatie', 'VMC onderhoud'], links: ['/nl/hvac/probleem-oplossen','/nl/hvac/installatie','/nl/hvac/reparatie'] },
-  { icon: '🧹', key: 'schoonmaak', label: 'Schoonmaak & Afwerking', desc: 'Schoonmaak na werken, afwerking, volledige restauratie.', subs: ['Werf schoonmaak', 'Afwerking', 'Restauratie'], links: ['/nl/schoonmaak','/nl/afwerking','/nl/schoonmaak'] },
-];
 ---
-<BaseLayout lang="nl" current="home" title="DRI Expert — Depannage, reparatie, installatie" description="DRI Expert — depannage, reparatie, installatie. Loodgieterij, verwarming, ontstopping, elektriciteit, HVAC in Brussel. 7/7 snelle respons.">
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-inner">
-      <h1>Uw <span>expert</span> in reparatie,<br>installatie & depannage</h1>
-      <p>Loodgieterij · Verwarming · Ontstopping · Elektriciteit · HVAC — Snelle respons 7 dagen per week in Brussel. Gratis offerte.</p>
-      <div class="hero-ctas">
-        <a href="tel:+324****2323" class="btn btn-accent">📞 Bel ons — 0470 31 23 23</a>
-        <a href="/nl/contact" class="btn btn-white">Vraag een gratis offerte aan</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Stats -->
+<BaseLayout lang="nl" current="home" title="Welkom" description="DriExperts is de partner van welzijn. Wij ondersteunen u in uw werk van alle soorten uitgerust met een succesvol track record . Van loodgieterij elektriciteit ,">
   <section class="section">
     <div class="container">
-      <div class="stats-row">
-        <div><div class="stat-number">15+</div><div class="stat-label">jaar ervaring</div></div>
-        <div><div class="stat-number">7/7</div><div class="stat-label">beschikbaar, incl. feestdagen</div></div>
-        <div><div class="stat-number">&lt; 1u</div><div class="stat-label">gemiddelde responstijd</div></div>
-        <div><div class="stat-number">5000+</div><div class="stat-label">tevreden klanten</div></div>
-      </div>
-    </div>
-  </section>
+      <div class="page-content">
+        <div class="breadcrumb"><a href="/nl/">Home</a> <span>/</span> <a href="/nl/welkom/">Welkom</a></div>
+        <h1>Welkom</h1>
+        <p>DriExperts is de partner van welzijn. Wij ondersteunen u in uw werk van alle soorten uitgerust met een succesvol track record . Van loodgieterij elektriciteit , door middel van verhitting en pijpleidingen om uiteindelijk kijken na uw voltooid werk ( wanden, verf, tegels, parket ... ) en reiniging. Onze inzet is uw tevredenheid! Wij treden op als business partners , verenigingen en particulieren.</p>
 
-  <!-- Services -->
-  <section class="section section-gray">
-    <div class="container">
-      <div class="section-title">
-        <h2>Onze diensten</h2>
-        <p>Een gekwalificeerd team voor al uw depannage-, reparatie- en installatiebehoeften</p>
-      </div>
-      <div class="grid-3">
-        {services.map(svc => (
-          <div class="card">
-            <div class="card-icon">{svc.icon}</div>
-            <h3><a href={'/nl/' + svc.key}>{svc.label}</a></h3>
-            <p>{svc.desc}</p>
-            <ul>
-              {svc.subs.map((sub, i) => (
-                <li><a href={svc.links[i]}>{sub}</a></li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Why us -->
-  <section class="section">
-    <div class="container">
-      <div class="section-title">
-        <h2>Waarom voor ons kiezen?</h2>
-        <p>Wat het verschil maakt</p>
-      </div>
-      <div class="grid-3">
-        <div class="card" style="text-align:center">
-          <div class="card-icon" style="margin:0 auto 1rem">⚡</div>
-          <h3>Snelle interventie</h3>
-          <p>We zijn binnen een uur in Brussel. Nooddienst beschikbaar 7/7, ook 's nachts en op feestdagen.</p>
-        </div>
-        <div class="card" style="text-align:center">
-          <div class="card-icon" style="margin:0 auto 1rem;background:var(--green)">🛡️</div>
-          <h3>Gegarandeerd werk</h3>
-          <p>Al onze interventies zijn gegarandeerd. We gebruiken kwaliteitsonderdelen en bieden nazorg.</p>
-        </div>
-        <div class="card" style="text-align:center">
-          <div class="card-icon" style="margin:0 auto 1rem;background:var(--accent)">💰</div>
-          <h3>Transparante prijzen</h3>
-          <p>Geen verrassingen. Gratis gedetailleerde offerte voor elke interventie. Concurrentiële prijzen.</p>
+        <div style="margin-top:2rem">
+          <a href="/nl/contact" class="btn btn-accent">Vraag een gratis offerte aan →</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="section section-gray" style="text-align:center">
-    <div class="container">
-      <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:0.75rem;color:var(--dark)">Een probleem? Offerte nodig?</h2>
-      <p style="color:var(--gray-600);margin-bottom:1.5rem;font-size:1.1rem">Neem nu contact op voor een snelle interventie</p>
-      <a href="/nl/contact" class="btn btn-accent" style="font-size:1.1rem;padding:1rem 2.5rem">Vraag een gratis offerte aan →</a>
     </div>
   </section>
 </BaseLayout>

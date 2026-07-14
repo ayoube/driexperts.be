@@ -1,96 +1,20 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-const services = [
-  { icon: '🔧', key: 'plumbing', label: 'Plumbing', desc: 'Troubleshooting, installation and repair. Taps, water heaters, pipes, sanitary.', subs: ['Plumbing troubleshooting', 'Installation', 'Repair'], links: ['/en/plumbing/troubleshooting','/en/plumbing/installation','/en/plumbing/repair'] },
-  { icon: '🔥', key: 'heating', label: 'Heating & Boiler', desc: 'Boiler repair, annual maintenance, installation and replacement. All brands.', subs: ['Boiler troubleshooting', 'Annual maintenance', 'Heating installation'], links: ['/en/heating/troubleshooting','/en/heating/installation','/en/heating/repair'] },
-  { icon: '💧', key: 'uncorking', label: 'Unblocking', desc: 'Sink, toilet, shower, bathtub unblocking. Camera inspection. Fast response.', subs: ['Drain unblocking', 'Toilet unblocking', 'Camera inspection'], links: ['/en/uncorking/troubleshooting','/en/uncorking/troubleshooting','/en/uncorking/troubleshooting'] },
-  { icon: '⚡', key: 'electricity', label: 'Electricity', desc: 'Electrical troubleshooting, panel installation, compliance upgrades. Lighting, outlets.', subs: ['Electrical repair', 'Panel installation', 'Compliance upgrade'], links: ['/en/electricity/troubleshooting','/en/electricity/installation','/en/electricity/repair'] },
-  { icon: '❄️', key: 'hvac', label: 'HVAC & Ventilation', desc: 'Air conditioning, ventilation, extraction. Installation and maintenance.', subs: ['AC troubleshooting', 'HVAC installation', 'VMC maintenance'], links: ['/en/hvac/troubleshooting','/en/hvac/installation','/en/hvac/repair'] },
-  { icon: '🧹', key: 'cleaning', label: 'Cleaning & Finishing', desc: 'Post-construction cleaning, finishing, complete restoration.', subs: ['Site cleaning', 'Finishing', 'Restoration'], links: ['/en/services/cleaning','/en/services/finishing','/en/services/cleaning'] },
-];
 ---
-<BaseLayout lang="en" current="home" title="DRI Expert — Troubleshooting, repair, installation" description="DRI Expert — troubleshooting, repair, installation. Plumbing, heating, unblocking, electricity, HVAC in Brussels. 7/7 fast response.">
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-inner">
-      <h1>Your <span>expert</span> in repair,<br>installation & troubleshooting</h1>
-      <p>Plumbing · Heating · Unblocking · Electricity · HVAC — Fast response 7 days a week in Brussels. Free quote.</p>
-      <div class="hero-ctas">
-        <a href="tel:+324****2323" class="btn btn-accent">📞 Call us — 0470 31 23 23</a>
-        <a href="/en/contact" class="btn btn-white">Request a free quote</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Stats -->
+<BaseLayout lang="en" current="home" title="Welcome" description="&amp;nbsp; DriExperts is the partner of well-being . We support you in your work of all kinds equipped with a successful track record . From plumbing to electricity">
   <section class="section">
     <div class="container">
-      <div class="stats-row">
-        <div><div class="stat-number">15+</div><div class="stat-label">years of experience</div></div>
-        <div><div class="stat-number">7/7</div><div class="stat-label">available, holidays included</div></div>
-        <div><div class="stat-number">&lt; 1h</div><div class="stat-label">average response time</div></div>
-        <div><div class="stat-number">5000+</div><div class="stat-label">satisfied clients</div></div>
-      </div>
-    </div>
-  </section>
+      <div class="page-content">
+        <div class="breadcrumb"><a href="/en/">Home</a> <span>/</span> <a href="/en/welcome/">Welcome</a></div>
+        <h1>Welcome</h1>
+        <p>&nbsp;</p>
 
-  <!-- Services -->
-  <section class="section section-gray">
-    <div class="container">
-      <div class="section-title">
-        <h2>Our services</h2>
-        <p>A qualified team for all your repair, installation and maintenance needs</p>
-      </div>
-      <div class="grid-3">
-        {services.map(svc => (
-          <div class="card">
-            <div class="card-icon">{svc.icon}</div>
-            <h3><a href={'/en/' + svc.key}>{svc.label}</a></h3>
-            <p>{svc.desc}</p>
-            <ul>
-              {svc.subs.map((sub, i) => (
-                <li><a href={svc.links[i]}>{sub}</a></li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+<p>DriExperts is the partner of well-being . We support you in your work of all kinds equipped with a successful track record . From plumbing to electricity , through heating and pipelines to finally look after your completion work (partitions, paint , tiles , parquet ... ) and cleaning . Our commitment is your satisfaction! We act as business partners , associations and individuals .</p>
 
-  <!-- Why us -->
-  <section class="section">
-    <div class="container">
-      <div class="section-title">
-        <h2>Why choose us?</h2>
-        <p>What makes the difference</p>
-      </div>
-      <div class="grid-3">
-        <div class="card" style="text-align:center">
-          <div class="card-icon" style="margin:0 auto 1rem">⚡</div>
-          <h3>Fast response</h3>
-          <p>We arrive within one hour in Brussels. Emergency service available 7/7, including nights and holidays.</p>
-        </div>
-        <div class="card" style="text-align:center">
-          <div class="card-icon" style="margin:0 auto 1rem;background:var(--green)">🛡️</div>
-          <h3>Guaranteed work</h3>
-          <p>All services are guaranteed. We use quality parts and provide follow-up after every job.</p>
-        </div>
-        <div class="card" style="text-align:center">
-          <div class="card-icon" style="margin:0 auto 1rem;background:var(--accent)">💰</div>
-          <h3>Transparent pricing</h3>
-          <p>No surprises. Free detailed quote before any work. Competitive and fair prices.</p>
+        <div style="margin-top:2rem">
+          <a href="/en/contact" class="btn btn-accent">Request a free quote →</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="section section-gray" style="text-align:center">
-    <div class="container">
-      <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:0.75rem;color:var(--dark)">A problem? Need a quote?</h2>
-      <p style="color:var(--gray-600);margin-bottom:1.5rem;font-size:1.1rem">Contact us now for a fast response</p>
-      <a href="/en/contact" class="btn btn-accent" style="font-size:1.1rem;padding:1rem 2.5rem">Request a free quote →</a>
     </div>
   </section>
 </BaseLayout>

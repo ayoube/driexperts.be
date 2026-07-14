@@ -1,14 +1,18 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 ---
-<BaseLayout lang="nl" current="home" title="Contacteer ons">
-<h1>Contacteer ons</h1>
-<p>📞 <a href="tel:+324****2323">0470 31 23 23</a> — <a href="tel:+322****5135">02 888 51 35</a></p>
-<form name="contact-nl" method="POST" data-netlify="true"><input type="hidden" name="form-name" value="contact-nl" />
-<label>Naam</label><input type="text" name="name" required />
-<label>Telefoon</label><input type="tel" name="phone" required />
-<label>Email</label><input type="email" name="email" />
-<label>Dienst</label><select name="service"><option>Loodgieterswerk</option><option>Verwarming</option><option>Elektriciteit</option><option>HVAC</option><option>Schoonmaak</option><option>Andere</option></select>
-<label>Bericht</label><textarea name="message" rows="5"></textarea>
-<button type="submit">Versturen</button></form>
+<BaseLayout lang="nl" current="contact" title="Contacteer ons" description="Hebben behoefte aan een snel en efficiënt oplossen van problemen ? Je praat aan het juiste adres ! We zijn hier om te helpen . Aarzel niet om ons online te cont">
+  <section class="section">
+    <div class="container">
+      <div class="page-content">
+        <div class="breadcrumb"><a href="/nl/">Home</a> <span>/</span> <a href="/nl/contact/">Contact</a></div>
+        <h1>Contacteer ons</h1>
+        <p>Hebben behoefte aan een snel en efficiënt oplossen van problemen ? Je praat aan het juiste adres ! We zijn hier om te helpen . Aarzel niet om <a href="/nl/contact">ons online te contacteren</a>.</p>
+
+        <div style="margin-top:2rem">
+          <a href="/nl/contact" class="btn btn-accent">Vraag een gratis offerte aan →</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

@@ -1,14 +1,18 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 ---
-<BaseLayout lang="en" current="home" title="Contact us">
-<h1>Contact us</h1>
-<p>📞 <a href="tel:+324****2323">0470 31 23 23</a> — <a href="tel:+322****5135">02 888 51 35</a></p>
-<form name="contact-en" method="POST" data-netlify="true"><input type="hidden" name="form-name" value="contact-en" />
-<label>Name</label><input type="text" name="name" required />
-<label>Phone</label><input type="tel" name="phone" required />
-<label>Email</label><input type="email" name="email" />
-<label>Service</label><select name="service"><option>Plumbing</option><option>Heating</option><option>Electricity</option><option>HVAC</option><option>Cleaning</option><option>Other</option></select>
-<label>Message</label><textarea name="message" rows="5"></textarea>
-<button type="submit">Send</button></form>
+<BaseLayout lang="en" current="contact" title="Contact us" description="Need a quick and efficient troubleshooting ? You &#x27;re talking to the right place! We are here to help you. Do not hesitate to contact us online .">
+  <section class="section">
+    <div class="container">
+      <div class="page-content">
+        <div class="breadcrumb"><a href="/en/">Home</a> <span>/</span> <a href="/en/contact/">Contact</a></div>
+        <h1>Contact us</h1>
+        <p>Need a quick and efficient troubleshooting ? You 're talking to the right place! We are here to help you. Do not hesitate to <a href="/en/contact">contact us online</a> .</p>
+
+        <div style="margin-top:2rem">
+          <a href="/en/contact" class="btn btn-accent">Request a free quote →</a>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

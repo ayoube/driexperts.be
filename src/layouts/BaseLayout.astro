@@ -1,166 +1,422 @@
 ---
-const { lang = 'fr' } = Astro.props;
+const { lang = 'fr', title, description, current } = Astro.props;
 const altLang = lang === 'fr' ? 'en' : lang === 'en' ? 'nl' : 'fr';
 const url = Astro.url.pathname.replace(/^\/(fr|en|nl)\/?/, '/').replace(/\/$/, '') || '/';
-const descriptions = {
-  fr: "DRI Expert — dépannage, réparation, installation. Plomberie, chauffage, débouchage, électricité, HVAC à Bruxelles.",
-  en: "DRI Expert — troubleshooting, repair, installation. Plumbing, heating, unblocking, electricity, HVAC in Brussels.",
-  nl: "DRI Expert — depannage, reparatie, installatie. Loodgieterij, verwarming, ontstopping, elektriciteit, HVAC in Brussel."
+
+const t = {
+  slogan: { fr: 'dépannage · réparation · installation', en: 'troubleshooting · repair · installation', nl: 'depannage · reparatie · installatie' },
+  callUs: { fr: 'Appelez-nous', en: 'Call us', nl: 'Bel ons' },
+  emergency: { fr: 'URGENCE 7J/7', en: 'EMERGENCY 7/7', nl: 'NOODGEVAL 7/7' },
+  home: { fr: 'Accueil', en: 'Home', nl: 'Home' },
+  plomberie: { fr: 'Plomberie', en: 'Plumbing', nl: 'Loodgieter' },
+  chauffage: { fr: 'Chauffage', en: 'Heating', nl: 'Verwarming' },
+  debouchage: { fr: 'Débouchage', en: 'Unblocking', nl: 'Ontstopping' },
+  electricite: { fr: 'Électricité', en: 'Electricity', nl: 'Elektriciteit' },
+  hvac: { fr: 'HVAC', en: 'HVAC', nl: 'HVAC' },
+  nettoyage: { fr: 'Nettoyage', en: 'Cleaning', nl: 'Schoonmaak' },
+  contact: { fr: 'Contact', en: 'Contact', nl: 'Contact' },
+  quote: { fr: 'Devis gratuit', en: 'Free quote', nl: 'Gratis offerte' },
+  footer: { fr: 'Dépannage, réparation, installation à Bruxelles', en: 'Troubleshooting, repair, installation in Brussels', nl: 'Depannage, reparatie, installatie in Brussel' },
+  legal: { fr: 'Mentions légales', en: 'Legal notice', nl: 'Juridische kennisgeving' },
 };
-const phones = { fr: "Appelez-nous", en: "Call us", nl: "Bel ons" };
-const navLabels = {
-  home: { fr: "Accueil", en: "Home", nl: "Home" },
-  plomberie: { fr: "Plomberie", en: "Plumbing", nl: "Loodgieterswerk" },
-  chauffage: { fr: "Chauffage", en: "Heating", nl: "Verwarming" },
-  debouchage: { fr: "Débouchage", en: "Unblocking", nl: "Ontkurken" },
-  electricite: { fr: "Électricité", en: "Electricity", nl: "Elektriciteit" },
-  hvac: { fr: "HVAC", en: "HVAC", nl: "HVAC" },
-  nettoyage: { fr: "Nettoyage", en: "Cleaning", nl: "Schoonmaak" },
-  contact: { fr: "Contact", en: "Contact", nl: "Contact" },
-};
-const navLinks = [
-  { key: 'home', fr: '/', en: '/en/', nl: '/nl/' },
+const nav = [
   { key: 'plomberie', fr: '/plomberie', en: '/en/plumbing', nl: '/nl/loodgieterswerk' },
   { key: 'chauffage', fr: '/chauffage', en: '/en/heating', nl: '/nl/verwarming' },
   { key: 'debouchage', fr: '/debouchage', en: '/en/uncorking', nl: '/nl/ontkurken' },
   { key: 'electricite', fr: '/electricite', en: '/en/electricity', nl: '/nl/elektriciteit' },
   { key: 'hvac', fr: '/hvac', en: '/en/hvac', nl: '/nl/hvac' },
   { key: 'nettoyage', fr: '/nettoyage', en: '/en/services/cleaning', nl: '/nl/schoonmaak' },
-  { key: 'contact', fr: '/contact', en: '/en/contact', nl: '/nl/contact' },
 ];
-const langSwitch = { fr: '/en' + url, en: '/nl' + url, nl: '/' + url };
-const langLabel = { fr: 'EN', en: 'NL', nl: 'FR' };
+const homeUrl = lang === 'fr' ? '/' : '/' + lang + '/';
+const langNext = altLang === 'fr' ? '/' : '/' + altLang + '/';
+const lngLabel = altLang === 'fr' ? 'FR' : altLang === 'en' ? 'EN' : 'NL';
 ---
+
 <!DOCTYPE html>
-<html lang="{lang}">
+<html lang={lang}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{Astro.props.title} | DRI Expert</title>
-  <meta name="description" content={Astro.props.description || descriptions[lang]} />
+  <title>{title} | DRI Expert</title>
+  <meta name="description" content={description} />
   <link rel="icon" type="image/png" href="/logo.png" />
   <link rel="alternate" hreflang="fr" href={"https://driexperts.be" + url} />
   <link rel="alternate" hreflang="en" href={"https://driexperts.be/en" + url} />
   <link rel="alternate" hreflang="nl" href={"https://driexperts.be/nl" + url} />
   <link rel="canonical" href={"https://driexperts.be" + (lang === 'fr' ? '' : '/' + lang) + url} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --blue: #1a56db;
-      --dark: #1e293b;
-      --light: #f8fafc;
-      --gray: #64748b;
-      --border: #e2e8f0;
+      --primary: #1e40af;
+      --primary-light: #3b82f6;
+      --primary-dark: #1e3a8a;
+      --dark: #0f172a;
+      --gray-600: #475569;
+      --gray-400: #94a3b8;
+      --gray-100: #f1f5f9;
+      --gray-50: #f8fafc;
+      --white: #ffffff;
+      --accent: #f59e0b;
+      --accent-dark: #d97706;
+      --green: #10b981;
+      --radius: 8px;
+      --radius-lg: 12px;
+      --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.04);
     }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: system-ui, -apple-system, sans-serif; color: var(--dark); line-height: 1.6; }
-    
-    header { 
-      background: var(--dark); color: white; padding: 0.75rem 1rem;
-      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--dark);
+      line-height: 1.6;
+      background: var(--white);
+      -webkit-font-smoothing: antialiased;
     }
-    header a { color: white; text-decoration: none; }
-    .logo { display: flex; align-items: center; gap: 0.75rem; }
-    .logo img { height: 40px; }
-    .logo span { font-size: 0.9rem; opacity: 0.85; }
-    .phones { font-size: 0.85rem; }
-    .phones a { font-weight: 700; font-size: 1.05rem; }
-    
-    nav { background: var(--blue); padding: 0.5rem 1rem; }
-    nav a { color: white; text-decoration: none; padding: 0.4rem 0.6rem; font-size: 0.9rem; border-radius: 4px; }
-    nav a:hover, nav a.active { background: rgba(255,255,255,0.15); }
-    nav { display: flex; flex-wrap: wrap; gap: 0.2rem; }
-    
-    main { max-width: 960px; margin: 2rem auto; padding: 0 1rem; }
-    h1 { font-size: 2rem; margin-bottom: 1rem; color: var(--dark); }
-    h2 { font-size: 1.5rem; margin: 1.5rem 0 0.75rem; color: var(--blue); }
-    p { margin-bottom: 1rem; }
-    
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
-    .service-card { 
-      border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem;
-      transition: box-shadow 0.2s;
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; }
+
+    /* ── Top bar ── */
+    .topbar {
+      background: var(--dark);
+      color: white;
+      padding: 0.5rem 2rem;
+      font-size: 0.8125rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
-    .service-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-    .service-card h3 { color: var(--blue); margin-bottom: 0.5rem; }
-    .service-card a { text-decoration: none; color: inherit; }
-    .service-card ul { list-style: none; padding: 0; }
-    .service-card li { padding: 0.3rem 0; }
-    .service-card li a { color: var(--blue); font-size: 0.95rem; }
-    
-    .cta { 
-      background: var(--blue); color: white; padding: 0.75rem 1.5rem; 
-      border-radius: 6px; text-decoration: none; display: inline-block; font-weight: 600;
-      margin: 0.5rem 0;
+    .topbar-left { display: flex; align-items: center; gap: 1rem; opacity: 0.8; }
+    .topbar-right { display: flex; align-items: center; gap: 1.5rem; }
+    .topbar-right a { color: white; font-weight: 600; transition: color 0.2s; }
+    .topbar-right a:hover { color: var(--accent); }
+    .badge-urgency {
+      background: var(--accent);
+      color: var(--dark);
+      padding: 0.2rem 0.75rem;
+      border-radius: 100px;
+      font-weight: 700;
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
-    .cta:hover { opacity: 0.9; }
-    
-    footer { 
-      border-top: 1px solid var(--border); padding: 2rem 1rem; 
-      text-align: center; color: var(--gray); font-size: 0.85rem;
-      max-width: 960px; margin: 3rem auto 0;
+
+    /* ── Main nav ── */
+    .navbar {
+      background: white;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0 2rem;
     }
-    footer a { color: var(--blue); }
-    
-    .breadcrumb { font-size: 0.85rem; color: var(--gray); margin-bottom: 1.5rem; }
-    .breadcrumb a { color: var(--blue); text-decoration: none; }
-    
-    .lang-switch { 
-      color: white; text-decoration: none; font-weight: 700; font-size: 0.85rem;
-      background: rgba(255,255,255,0.15); padding: 0.3rem 0.6rem; border-radius: 4px;
+    .navbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .lang-switch:hover { background: rgba(255,255,255,0.3); }
-    
-    form { max-width: 500px; }
-    form label { display: block; font-weight: 600; margin: 1rem 0 0.25rem; }
-    form input, form textarea, form select { 
-      width: 100%; padding: 0.6rem; border: 1px solid var(--border); border-radius: 4px; font-size: 1rem;
-      font-family: inherit;
+    .nav-brand { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 0; }
+    .nav-brand img { height: 42px; }
+    .nav-brand-text { font-size: 1.2rem; font-weight: 800; color: var(--primary); }
+    .nav-brand-text span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 0.25rem; }
+    .nav-links a {
+      color: var(--dark);
+      padding: 1.15rem 0.75rem;
+      font-weight: 500;
+      font-size: 0.875rem;
+      transition: color 0.2s;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
     }
-    form button { 
-      background: var(--blue); color: white; border: none; padding: 0.75rem 2rem;
-      border-radius: 6px; font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: 1rem;
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
     }
-    form button:hover { opacity: 0.9; }
-    
-    @media (max-width: 640px) {
-      header { flex-direction: column; text-align: center; }
-      nav { justify-content: center; }
-      h1 { font-size: 1.5rem; }
-      .services-grid { grid-template-columns: 1fr; }
+    .nav-links a.nav-cta-btn {
+      background: var(--accent);
+      color: var(--dark);
+      padding: 0.55rem 1.25rem !important;
+      border-radius: var(--radius);
+      font-weight: 700;
+      margin-left: 0.5rem;
+      border-bottom: none;
+    }
+    .nav-links a.nav-cta-btn:hover {
+      background: var(--accent-dark);
+      color: white;
+    }
+    .nav-lang {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--gray-400);
+      padding: 1.15rem 0.5rem;
+      transition: color 0.2s;
+    }
+    .nav-lang:hover { color: var(--primary); }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+      color: white;
+      padding: 5rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -50px; right: -50px;
+      width: 300px; height: 300px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+    .hero-inner { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero h1 { font-size: 2.75rem; font-weight: 800; line-height: 1.15; margin-bottom: 1rem; }
+    .hero h1 span { color: var(--accent); }
+    .hero p { font-size: 1.15rem; opacity: 0.9; margin-bottom: 2rem; max-width: 600px; }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 0.85rem 1.75rem; border-radius: var(--radius); font-weight: 700; font-size: 1rem; transition: all 0.2s; cursor: pointer; border: none; text-align: center; }
+    .btn-accent { background: var(--accent); color: var(--dark); }
+    .btn-accent:hover { background: var(--accent-dark); color: white; transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    .btn-white { background: white; color: var(--primary); }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+
+    /* ── Sections ── */
+    .section { padding: 4rem 2rem; }
+    .section-gray { background: var(--gray-50); }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-title { text-align: center; margin-bottom: 3rem; }
+    .section-title h2 { font-size: 2rem; font-weight: 800; color: var(--dark); margin-bottom: 0.5rem; }
+    .section-title p { color: var(--gray-600); font-size: 1.1rem; }
+
+    /* ── Service Cards ── */
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1.5rem; }
+    .card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      transition: all 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--primary-light);
+    }
+    .card-icon {
+      width: 56px; height: 56px;
+      background: var(--primary);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; margin-bottom: 1.25rem;
+    }
+    .card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--dark); }
+    .card p { color: var(--gray-600); font-size: 0.9375rem; margin-bottom: 1rem; line-height: 1.6; }
+    .card ul { list-style: none; padding: 0; }
+    .card ul li { padding: 0.35rem 0; }
+    .card ul li a { color: var(--primary); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    .card ul li a:hover { color: var(--accent-dark); }
+    .card ul li::before { content: '→ '; color: var(--accent); font-weight: 700; }
+
+    /* ── Trust / Stats ── */
+    .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center; }
+    .stat-number { font-size: 2.5rem; font-weight: 800; color: var(--primary); line-height: 1.1; }
+    .stat-label { color: var(--gray-600); font-size: 0.9375rem; margin-top: 0.25rem; }
+
+    /* ── Emergency Banner ── */
+    .emergency-strip {
+      background: var(--accent);
+      color: var(--dark);
+      padding: 1.5rem 2rem;
+      text-align: center;
+    }
+    .emergency-strip .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .emergency-strip strong { font-size: 1.25rem; }
+    .emergency-strip a {
+      background: var(--dark);
+      color: white;
+      padding: 0.7rem 1.5rem;
+      border-radius: var(--radius);
+      font-weight: 700;
+      font-size: 1.05rem;
+      transition: transform 0.2s;
+      display: inline-block;
+    }
+    .emergency-strip a:hover { transform: scale(1.05); }
+
+    /* ── Content pages ── */
+    .page-content { max-width: 800px; margin: 0 auto; }
+    .page-content h1 { font-size: 2.25rem; font-weight: 800; margin-bottom: 1rem; color: var(--dark); }
+    .page-content h2 { font-size: 1.5rem; font-weight: 700; margin: 2rem 0 0.75rem; color: var(--primary); }
+    .page-content h3 { font-size: 1.15rem; font-weight: 600; margin: 1.5rem 0 0.5rem; }
+    .page-content p { margin-bottom: 1rem; color: var(--gray-600); line-height: 1.7; }
+    .page-content ul { margin: 0.5rem 0 1rem 1.5rem; color: var(--gray-600); }
+    .page-content ul li { margin-bottom: 0.35rem; }
+    .breadcrumb { font-size: 0.875rem; color: var(--gray-400); margin-bottom: 1.5rem; }
+    .breadcrumb a { color: var(--primary); }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 0.5rem; }
+
+    /* ── Contact form ── */
+    .contact-form { max-width: 550px; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label { display: block; font-weight: 600; margin-bottom: 0.35rem; font-size: 0.9rem; }
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%; padding: 0.7rem 0.85rem;
+      border: 1.5px solid #e2e8f0; border-radius: var(--radius);
+      font-size: 0.95rem; font-family: inherit;
+      transition: border-color 0.2s;
+      background: white;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      outline: none; border-color: var(--primary-light);
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+    }
+    .btn-submit {
+      background: var(--primary);
+      color: white;
+      padding: 0.8rem 2rem;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-submit:hover { background: var(--primary-dark); transform: translateY(-1px); }
+
+    /* ── Footer ── */
+    .footer {
+      background: var(--dark);
+      color: white;
+      padding: 3rem 2rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .footer h4 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: white; }
+    .footer p, .footer a { color: var(--gray-400); font-size: 0.9rem; line-height: 1.7; }
+    .footer a:hover { color: var(--accent); }
+    .footer a.phone { color: var(--accent); font-weight: 700; font-size: 1.1rem; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      text-align: center;
+      font-size: 0.8125rem;
+      color: var(--gray-400);
+      max-width: 1100px;
+      margin-left: auto; margin-right: auto;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .topbar { justify-content: center; text-align: center; }
+      .nav-links { display: none; }
+      .hero h1 { font-size: 2rem; }
+      .hero { padding: 3rem 1.5rem; }
+      .section { padding: 2.5rem 1rem; }
+      .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .hero-ctas { flex-direction: column; }
+      .hero-ctas .btn { width: 100%; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">
-      <a href={lang === 'fr' ? '/' : '/' + lang + '/'}><img src="/logo.png" alt="DRI Expert" /></a>
-      <span>{lang === 'fr' ? 'dépannage · réparation · installation' : lang === 'en' ? 'troubleshooting · repair · installation' : 'depannage · reparatie · installatie'}</span>
+  <!-- Top bar -->
+  <div class="topbar">
+    <div class="topbar-left">🏠 {t.slogan[lang]}</div>
+    <div class="topbar-right">
+      <span class="badge-urgency">{t.emergency[lang]}</span>
+      <a href="tel:+32470232323">📞 0470 31 23 23</a>
+      <a href="tel:+3228885135">📞 02 888 51 35</a>
     </div>
-    <div class="phones">
-      <a href="tel:+324****2323">0470 31 23 23</a> · <a href="tel:+322****5135">02 888 51 35</a>
-      <br><span style="font-size:0.8rem;opacity:0.7">{phones[lang]}</span>
-    </div>
-    <a href={langSwitch[lang]} class="lang-switch" title={langLabel[lang]}>{langLabel[lang]}</a>
-  </header>
-  
-  <nav>
-    {navLinks.map(link => (
-      <a href={link[lang]} class={Astro.props.current === link.key ? 'active' : ''}>
-        {navLabels[link.key][lang]}
+  </div>
+
+  <!-- Nav -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href={homeUrl} class="nav-brand">
+        <img src="/logo.png" alt="DRI Expert" />
+        <span class="nav-brand-text">DRI<span>Expert</span></span>
       </a>
-    ))}
+      <div class="nav-links">
+        <a href={homeUrl} class:list={['', { active: current === 'home' }]}>{t.home[lang]}</a>
+        {nav.map(item => (
+          <a href={item[lang]} class:list={['', { active: current === item.key }]}>{t[item.key][lang]}</a>
+        ))}
+        <a href={lang === 'fr' ? '/contact' : '/' + lang + '/contact'} class="nav-cta-btn">{t.quote[lang]}</a>
+        <a href={langNext} class="nav-lang" title={altLang.toUpperCase()}>{lngLabel}</a>
+      </div>
+    </div>
   </nav>
-  
-  <main>
-    <slot />
-  </main>
-  
-  <footer>
-    <p>
-      <strong>DRI Expert</strong> — Dépannage, réparation, installation à Bruxelles<br>
-      <a href="tel:+32470312323">0470 31 23 23</a> · <a href="tel:+3228885135">02 888 51 35</a><br>
-      <a href="/mentions-legales">Mentions légales</a> · <a href="/contact">Contact</a>
-    </p>
+
+  <!-- Page content -->
+  <slot />
+
+  <!-- Emergency strip -->
+  <div class="emergency-strip">
+    <div class="container">
+      <strong>⚡ {t.emergency[lang]} — {t.callUs[lang]} 24h/24</strong>
+      <a href="tel:+32470232323">📞 0470 31 23 23</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <h4>DRI Expert</h4>
+        <p>{t.footer[lang]}</p>
+        <p style="margin-top:0.5rem">
+          <a href="tel:+32470232323" class="phone">0470 31 23 23</a><br>
+          <a href="tel:+3228885135">02 888 51 35</a>
+        </p>
+      </div>
+      <div>
+        <h4>{t.home[lang] === 'Home' ? 'Services' : 'Services'}</h4>
+        {nav.map(item => (
+          <p><a href={item[lang]}>{t[item.key][lang]}</a></p>
+        ))}
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>Bruxelles, Belgique</p>
+        <p><a href={lang === 'fr' ? '/contact' : '/' + lang + '/contact'}>{t.contact[lang]}</a></p>
+        <p><a href={lang === 'fr' ? '/mentions-legales' : '/' + lang + '/legal'}>{t.legal[lang]}</a></p>
+        <p><a href={lang === 'fr' ? '/contact' : '/' + lang + '/contact'}>{t.quote[lang]}</a></p>
+      </div>
+      <div>
+        <h4>Zones</h4>
+        <p>Bruxelles 1000</p>
+        <p>Ixelles 1050</p>
+        <p>Uccle 1180</p>
+        <p>Saint-Gilles 1060</p>
+        <p>Etterbeek 1040</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © {new Date().getFullYear()} DRI Expert — {t.slogan[lang]}
+    </div>
   </footer>
 </body>
 </html>

@@ -1,18 +1,100 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import BaseLayout from '../layouts/BaseLayout.astro';
+const lang = 'fr';
+const title = 'DRI Expert — Dépannage, réparation, installation';
+const desc = 'DRI Expert — dépannage, réparation, installation. Plomberie, chauffage, débouchage, électricité, HVAC à Bruxelles. Intervention rapide 7j/7.';
+const services = [
+  { icon: '🔧', key: 'plomberie', label: 'Plomberie', desc: 'Dépannage, installation et réparation toutes marques. Robinetterie, chauffe-eau, canalisations, sanitaires.', subs: ['Dépannage plomberie', 'Installation sanitaire', 'Réparation fuite', 'Plombier Bruxelles'], links: ['/plomberie/depannage','/plomberie/installation','/plomberie/reparation','/plombier/bruxelles'] },
+  { icon: '🔥', key: 'chauffage', label: 'Chauffage & Chaudière', desc: 'Dépannage chaudière gaz et mazout. Entretien annuel, installation et remplacement. Toutes marques.', subs: ['Dépannage chaudière', 'Entretien chaudière', 'Installation chauffage', 'Chauffagiste Bruxelles'], links: ['/chauffage/depannage','/chauffage/entretien','/chauffage/installation','/chauffagiste/bruxelles'] },
+  { icon: '💧', key: 'debouchage', label: 'Débouchage', desc: 'Débouchage évier, wc, douche, baignoire. Inspection caméra. Intervention rapide en moins d\'1h.', subs: ['Débouchage évier', 'Débouchage WC', 'Débouchage égouts', 'Inspection caméra'], links: ['/debouchage/depannage','/debouchage/evier','/debouchage/toilette','/debouchage/depannage'] },
+  { icon: '⚡', key: 'electricite', label: 'Électricité', desc: 'Dépannage électrique, installation tableau, mise aux normes. Éclairage, prises, domotique.', subs: ['Dépannage électrique', 'Installation tableau', 'Mise aux normes', 'Éclairage LED'], links: ['/electricite/depannage','/electricite/installation','/electricite/reparation','/electricite/depannage'] },
+  { icon: '❄️', key: 'hvac', label: 'HVAC & Ventilation', desc: 'Climatisation, ventilation, VMC, extraction. Installation et maintenance systèmes HVAC.', subs: ['Dépannage clim', 'Installation HVAC', 'Entretien VMC', 'Ventilation'], links: ['/hvac/depannage','/hvac/installation','/hvac/reparation','/hvac/depannage'] },
+  { icon: '🧹', key: 'nettoyage', label: 'Nettoyage & Parachèvement', desc: 'Nettoyage après travaux, parachèvement, finitions. Remise en état complète.', subs: ['Nettoyage chantier', 'Parachèvement', 'Finitions'], links: ['/nettoyage','/parachevement','/nettoyage'] },
+];
 ---
-<BaseLayout lang="fr" current="home" title="DRI Expert — Dépannage, réparation, installation">
-<h1>DRI Expert</h1>
-<p>Spécialiste en <strong>plomberie, chauffage, débouchage, électricité, HVAC</strong>. Intervention rapide 7j/7 à Bruxelles.</p>
-<a href="tel:+324****2323" class="cta">📞 0470 31 23 23 — Appelez-nous</a>
-<h2>Nos services</h2>
-<div class="services-grid">
-  <div class="service-card"><h3>🔧 <a href="/plomberie">Plomberie</a></h3><ul><li><a href="/plomberie/depannage">Dépannage</a></li><li><a href="/plomberie/installation">Installation</a></li><li><a href="/plomberie/reparation">Réparation</a></li><li><a href="/plombier/bruxelles">Plombier Bruxelles</a></li></ul></div>
-  <div class="service-card"><h3>🔥 <a href="/chauffage">Chauffage & Chaudière</a></h3><ul><li><a href="/chauffage/depannage">Dépannage</a></li><li><a href="/chauffage/entretien">Entretien</a></li><li><a href="/chauffage/installation">Installation</a></li><li><a href="/chauffagiste/bruxelles">Chauffagiste Bruxelles</a></li></ul></div>
-  <div class="service-card"><h3>💧 <a href="/debouchage">Débouchage</a></h3><ul><li><a href="/debouchage/depannage">Dépannage</a></li><li><a href="/debouchage/evier">Évier</a></li><li><a href="/debouchage/toilette">Toilettes</a></li></ul></div>
-  <div class="service-card"><h3>⚡ <a href="/electricite">Électricité</a></h3><ul><li><a href="/electricite/depannage">Dépannage</a></li><li><a href="/electricite/installation">Installation</a></li><li><a href="/electricite/reparation">Réparation</a></li></ul></div>
-  <div class="service-card"><h3>❄️ <a href="/hvac">HVAC</a></h3><ul><li><a href="/hvac/depannage">Dépannage</a></li><li><a href="/hvac/installation">Installation</a></li><li><a href="/hvac/reparation">Réparation</a></li></ul></div>
-  <div class="service-card"><h3>🧹 Nettoyage & Parachèvement</h3><ul><li><a href="/nettoyage">Nettoyage</a></li><li><a href="/parachevement">Parachèvement</a></li></ul></div>
-</div>
-<a href="/contact" class="cta">Demandez un devis gratuit</a>
+
+<BaseLayout lang={lang} title={title} description={desc} current="home">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Votre <span>expert</span> en dépannage,<br>réparation et installation</h1>
+      <p>Plomberie · Chauffage · Débouchage · Électricité · HVAC — Intervention rapide 7j/7 à Bruxelles et environs. Devis gratuit.</p>
+      <div class="hero-ctas">
+        <a href="tel:+324****2323" class="btn btn-accent">📞 Appelez-nous — 0470 31 23 23</a>
+        <a href="/contact" class="btn btn-white">Demandez un devis gratuit</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="section">
+    <div class="container">
+      <div class="stats-row">
+        <div><div class="stat-number">15+</div><div class="stat-label">années d'expérience</div></div>
+        <div><div class="stat-number">7j/7</div><div class="stat-label">disponible, jours fériés inclus</div></div>
+        <div><div class="stat-number">&lt; 1h</div><div class="stat-label">délai d'intervention moyen</div></div>
+        <div><div class="stat-number">5000+</div><div class="stat-label">clients satisfaits</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section section-gray">
+    <div class="container">
+      <div class="section-title">
+        <h2>Nos services</h2>
+        <p>Une équipe qualifiée pour tous vos travaux de dépannage, réparation et installation</p>
+      </div>
+      <div class="grid-3">
+        {services.map(svc => (
+          <div class="card">
+            <div class="card-icon">{svc.icon}</div>
+            <h3><a href={'/' + svc.key}>{svc.label}</a></h3>
+            <p>{svc.desc}</p>
+            <ul>
+              {svc.subs.map((sub, i) => (
+                <li><a href={svc.links[i]}>{sub}</a></li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why us -->
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <h2>Pourquoi nous choisir ?</h2>
+        <p>Ce qui fait la différence</p>
+      </div>
+      <div class="grid-3">
+        <div class="card" style="text-align:center">
+          <div class="card-icon" style="margin:0 auto 1rem">⚡</div>
+          <h3>Intervention rapide</h3>
+          <p>Nous intervenons en moins d'une heure sur Bruxelles. Service d'urgence disponible 7j/7, même la nuit et les jours fériés.</p>
+        </div>
+        <div class="card" style="text-align:center">
+          <div class="card-icon" style="margin:0 auto 1rem;background:var(--green)">🛡️</div>
+          <h3>Travail garanti</h3>
+          <p>Toutes nos interventions sont garanties. Nous utilisons des pièces de qualité et assurons un suivi après chaque prestation.</p>
+        </div>
+        <div class="card" style="text-align:center">
+          <div class="card-icon" style="margin:0 auto 1rem;background:var(--accent)">💰</div>
+          <h3>Devis transparent</h3>
+          <p>Pas de mauvaise surprise. Devis gratuit et détaillé avant toute intervention. Prix compétitifs et justes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section-gray" style="text-align:center">
+    <div class="container">
+      <h2 style="font-size:1.75rem;font-weight:800;margin-bottom:0.75rem;color:var(--dark)">Un problème ? Besoin d'un devis ?</h2>
+      <p style="color:var(--gray-600);margin-bottom:1.5rem;font-size:1.1rem">Contactez-nous dès maintenant pour une intervention rapide</p>
+      <a href="/contact" class="btn btn-accent" style="font-size:1.1rem;padding:1rem 2.5rem">Demandez un devis gratuit →</a>
+    </div>
+  </section>
 </BaseLayout>
